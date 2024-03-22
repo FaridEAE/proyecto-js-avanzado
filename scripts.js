@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let allPokemons = []; // Variable para mantener una referencia a todos los Pokémon
 
     // Fetch Pokemon data from PokeAPI
-    fetch('https://pokeapi.co/api/v2/pokemon')
+    fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
     .then(response => response.json())
     .then(data => {
         allPokemons = data.results;
