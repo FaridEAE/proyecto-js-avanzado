@@ -22,8 +22,9 @@ document.addEventListener("DOMContentLoaded", function() {
         pokemonContainer.innerHTML = '';
         pokemons.forEach(pokemon => {
             const card = document.createElement('div');
-            card.classList.add('pokemon-card');
+             card.classList.add('pokemon-card');
             const pokemonId = pokemon.url.split('/')[6]; // Extracting Pokemon ID from URL
+            card.setAttribute('data-id',pokemonId); // Aqui se agrega como atributoExtracting Pokemon ID from URL
             card.innerHTML = `
                 <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemonId}.png" class="pokemon-image">
                 <div>
@@ -38,9 +39,10 @@ document.addEventListener("DOMContentLoaded", function() {
     // Add event listener to display details on click
     function addEventListenerToCards(pokemons) {
         const cards = document.querySelectorAll('.pokemon-card');
-        cards.forEach((card, index) => {
+       cards.forEach((card, index) => {
             card.addEventListener('click', () => {
-                const pokemonId = index + 1; // Index starts from 0, Pokemon ID starts from 1
+                const pokemonId = card.getAttribute('data-id'); // Aqui se extrae
+            
                 fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`)
                 .then(response => response.json())
                 .then(pokemon => {
